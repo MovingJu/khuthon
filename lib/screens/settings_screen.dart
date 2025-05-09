@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
+import '../services/syncdata_service.dart';
+import '../data/task_rules.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -59,9 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
 
       print('로그인 성공: ${_user?.displayName}');
-      print('구글 프로필 이름: ${googleUser.displayName}');
-      print('구글 프로필 이메일: ${googleUser.email}');
-      print('구글 프로필 사진: ${googleUser.photoUrl}');
+      await SyncService.syncOnAccountChange(); //계정 바꿀 시 동기화
     } catch (e) {
       print('로그인 실패: $e');
     }
@@ -113,6 +114,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           _user = null;
                           _googleUser = null;
                         });
+                        final box = Hive.box<CropData>('crops');
+                        await box.clear();
                       },
                       child: const Text('로그아웃'),
                     ),
