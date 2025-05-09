@@ -27,6 +27,12 @@ class SyncService {
         waterperiod: data['waterperiod'] ?? '',
         sunneed: data['sunneed'] ?? '',
         description: data['description'] ?? '',
+        updatedAt: data['updatedAt'] is Timestamp
+            ? (data['updatedAt'] as Timestamp).toDate()
+            : data['updatedAt'] is DateTime
+            ? data['updatedAt'] as DateTime
+            : null,
+
         // difficulty: data['difficulty'],
         // info: data['info'],
         // indoorfriendly: data['indoorfriendly'],
@@ -76,6 +82,7 @@ class SyncService {
           'indoorfriendly': crop.indoorfriendly,
           'sowingdate': crop.sowingdate,
           'harvestdate': crop.harvestdate,
+          'updatedAt' : crop.updatedAt,
         });
       } catch (_) {}
     }
@@ -90,6 +97,12 @@ class SyncService {
         waterperiod: data['waterperiod'] ?? '',
         sunneed: data['sunneed'] ?? '',
         description: data['description'] ?? '',
+        updatedAt: data['updatedAt'] is Timestamp
+            ? (data['updatedAt'] as Timestamp).toDate()
+            : data['updatedAt'] is DateTime
+            ? data['updatedAt'] as DateTime
+            : null,
+
         // difficulty: data['difficulty'],
         // info: data['info'],
         // indoorfriendly: data['indoorfriendly'],
@@ -106,4 +119,54 @@ class SyncService {
       ));
     }
   }
+  static Future<void> syncByTimestamp() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) throw Exception('로그인 필요');
+
+    final box = Hive.box<CropData>('crops');
+    final crops = box.values.toList();
+
+    // 1. Hive에서 가장 최근 updatedAt 구하기
+    DateTime? hiveLatest = crops.isNotEmpty
+        ? crops.map((e) => e.updatedAt ?? DateTime.fromMillisecondsSinceEpoch(0)).reduce((a, b) => a.isAfter(b) ? a : b)
+        : null;
+
+    // 2. Firestore에서 가장 최근 updatedAt 구하기
+    final cropsRef = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection('crops');
+    final snapshot = await cropsRef.get();
+
+    DateTime? firestoreLatest;
+    for (final doc in snapshot.docs) {
+      final data = doc.data();
+      final ts = data['updatedAt'];
+      DateTime? dt;
+      if (ts is Timestamp) {
+        dt = ts.toDate();
+      } else if (ts is DateTime) {
+        dt = ts;
+      }
+      if (dt != null) {
+        if (firestoreLatest == null || dt.isAfter(firestoreLatest)) {
+          firestoreLatest = dt;
+        }
+      }
+    }
+
+    // 3. 둘 중 더 최신인 쪽으로 동기화
+    if (hiveLatest != null && (firestoreLatest == null || hiveLatest.isAfter(firestoreLatest))) {
+      // Hive가 더 최신 → Firestore로 업로드
+      print('Hive가 최신, Firestore로 업로드');
+      await SyncService.syncWithCloud();
+    } else if (firestoreLatest != null && (hiveLatest == null || firestoreLatest.isAfter(hiveLatest))) {
+      // Firestore가 더 최신 → Hive로 다운로드
+      print('Firestore가 최신, Hive로 다운로드');
+      await SyncService.syncOnAccountChange();
+    } else {
+      print('동기화 필요 없음 (데이터가 없거나 이미 일치)');
+    }
+  }
+
 }
