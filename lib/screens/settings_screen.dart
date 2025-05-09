@@ -62,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
 
       print('로그인 성공: ${_user?.displayName}');
-      await SyncService.syncOnAccountChange(); //계정 바꿀 시 동기화
+      await SyncService.downloadFirestoreToHive(); //계정 바꿀 시 동기화
     } catch (e) {
       print('로그인 실패: $e');
     }
