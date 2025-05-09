@@ -1,5 +1,9 @@
 import 'dart:html' as html; // 웹 세션 스토리지용
 import 'package:flutter/foundation.dart' show kIsWeb; // kIsWeb 확인용
+import 'package:flutter/material.dart';
+import 'package:khuthon/screens/home_screen.dart';
+import 'package:khuthon/screens/settings_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthGate extends StatefulWidget {
   const AuthGate({Key? key}) : super(key: key);
