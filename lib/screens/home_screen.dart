@@ -24,36 +24,42 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '고민 제로 작물 플렛폼, 작물픽!',
-          style: TextStyle(fontWeight: FontWeight.bold),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10), // 💡 위쪽 마진 10픽셀
+          child: AppBar(
+            title: const Text(
+              '고민 제로 작물 플렛폼, 작물픽!',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            centerTitle: true,
+            toolbarHeight: 100,
+            shape: const RoundedRectangleBorder(
+              side: BorderSide(color: Colors.green, width: 4),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.account_circle),
+                iconSize: 40,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => SettingsScreen()),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
-        centerTitle: true,
-        toolbarHeight: 100,
-        shape: const RoundedRectangleBorder(
-          side: BorderSide(
-            color: Colors.green, // ✅ 테두리 색깔
-            width: 4, // ✅ 테두리 두께
-          ),
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20), // ✅ 아랫부분 둥글게
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            iconSize: 40,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => SettingsScreen()),
-              );
-            },
-          ),
-        ],
       ),
+
       body: _pages[_selectedIndex],
     );
   }
