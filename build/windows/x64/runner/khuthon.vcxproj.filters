@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\runner\flutter_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -15,46 +14,20 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\generated_plugin_registrant.cc">
-=======
-    <ClCompile Include="C:\khuthon_2025real\windows\runner\flutter_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\khuthon_2025real\windows\runner\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\khuthon_2025real\windows\runner\utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\khuthon_2025real\windows\runner\win32_window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\khuthon_2025real\windows\flutter\generated_plugin_registrant.cc">
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\runner\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\runner\Runner.rc">
-=======
-    <CustomBuild Include="C:\khuthon_2025real\windows\runner\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="C:\khuthon_2025real\windows\runner\Runner.rc">
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
-<<<<<<< HEAD
       <UniqueIdentifier>{DAADA7A8-D235-3076-8C96-32B4332389C1}</UniqueIdentifier>
-=======
-      <UniqueIdentifier>{59742F7B-7BC6-3211-847B-5FD638B6C01D}</UniqueIdentifier>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     </Filter>
   </ItemGroup>
 </Project>

@@ -18,11 +18,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-<<<<<<< HEAD
     <ProjectGuid>{4D733F2F-9547-3FAE-B3BB-7A341D72FD35}</ProjectGuid>
-=======
-    <ProjectGuid>{241EB78C-C7E6-3819-B99F-54AE6372CA50}</ProjectGuid>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -104,11 +100,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\CMakeFiles\b13492430c298b6f0db2fec994e97787\INSTALL_force.rule">
-=======
-    <CustomBuild Include="C:\khuthon_2025real\build\windows\x64\CMakeFiles\3fa3dd4355f7d6255f8c3edfbf8f5b9c\INSTALL_force.rule">
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
@@ -121,11 +113,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-<<<<<<< HEAD
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
-=======
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\khuthon_2025real\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</BuildInParallel>
@@ -140,11 +128,7 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">%(AdditionalInputs)</AdditionalInputs>
-<<<<<<< HEAD
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
-=======
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\khuthon_2025real\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</VerifyInputsAndOutputsExist>
       <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildInParallel>
@@ -159,34 +143,20 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-<<<<<<< HEAD
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
-=======
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\khuthon_2025real\build\windows\x64\runner\CMakeFiles\INSTALL_force</Outputs>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</VerifyInputsAndOutputsExist>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ProjectReference Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\ZERO_CHECK.vcxproj">
       <Project>{BC65D84B-FEA3-3AAE-AE8F-E0CAB61285B2}</Project>
-=======
-    <ProjectReference Include="C:\khuthon_2025real\build\windows\x64\ZERO_CHECK.vcxproj">
-      <Project>{37311419-ADFD-341B-9E0C-EBAB095FA5B1}</Project>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-<<<<<<< HEAD
     <ProjectReference Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\runner\ALL_BUILD.vcxproj">
       <Project>{A58F0893-33AA-3F32-B458-6B2534FE592B}</Project>
-=======
-    <ProjectReference Include="C:\khuthon_2025real\build\windows\x64\runner\ALL_BUILD.vcxproj">
-      <Project>{D8753A48-4DB7-3254-B442-99BDB9C0E346}</Project>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Name>ALL_BUILD</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

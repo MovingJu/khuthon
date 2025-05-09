@@ -27,7 +27,7 @@ Future<void> parseGptResponseAndSave(String response) async {
   }).toList();
 
 
-  final box = await Hive.openBox<Crop>('crops');
+  final box = await Hive.openBox<CropData>('crops');
   // Hive에 저장
   for (var crop in crops) {
     await box.add(crop);

@@ -18,11 +18,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-<<<<<<< HEAD
     <ProjectGuid>{B1E0D822-1B55-32DF-A1B8-AE42BCEC05BA}</ProjectGuid>
-=======
-    <ProjectGuid>{CE56598E-0CAB-38ED-A7B1-5C2052B42155}</ProjectGuid>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -54,7 +50,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-<<<<<<< HEAD
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">flutter_wrapper_app.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">flutter_wrapper_app</TargetName>
@@ -64,28 +59,13 @@
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">flutter_wrapper_app</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">.lib</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\Release\</OutDir>
-=======
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\khuthon_2025real\build\windows\x64\flutter\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">flutter_wrapper_app.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">flutter_wrapper_app</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\khuthon_2025real\build\windows\x64\flutter\Profile\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">flutter_wrapper_app.dir\Profile\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">flutter_wrapper_app</TargetName>
-    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\khuthon_2025real\build\windows\x64\flutter\Release\</OutDir>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">flutter_wrapper_app.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">flutter_wrapper_app</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -106,17 +86,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_HAS_EXCEPTIONS=0;UNICODE;_UNICODE;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -129,11 +102,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
     <ClCompile>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>"4100"</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -154,17 +123,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;UNICODE;_UNICODE;CMAKE_INTDIR=\"Profile\"</PreprocessorDefinitions>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -177,11 +139,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DisableSpecificWarnings>"4100"</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -202,17 +160,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;UNICODE;_UNICODE;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-<<<<<<< HEAD
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
       <AdditionalIncludeDirectories>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-=======
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-    <Midl>
-      <AdditionalIncludeDirectories>C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\include;C:\khuthon_2025real\windows\flutter\ephemeral;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -224,19 +175,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows/flutter/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows -BC:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64 --check-stamp-file C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/flutter/CMakeFiles/generate.stamp
-=======
-    <CustomBuild Include="C:\khuthon_2025real\windows\flutter\CMakeLists.txt">
-      <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/khuthon_2025real/windows/flutter/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/khuthon_2025real/windows -BC:/khuthon_2025real/build/windows/x64 --check-stamp-file C:/khuthon_2025real/build/windows/x64/flutter/CMakeFiles/generate.stamp
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -244,21 +187,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-<<<<<<< HEAD
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Building Custom Rule C:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows/flutter/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows -BC:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64 --check-stamp-file C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/flutter/CMakeFiles/generate.stamp
-=======
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\khuthon_2025real\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\khuthon_2025real\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Building Custom Rule C:/khuthon_2025real/windows/flutter/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/khuthon_2025real/windows -BC:/khuthon_2025real/build/windows/x64 --check-stamp-file C:/khuthon_2025real/build/windows/x64/flutter/CMakeFiles/generate.stamp
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -266,21 +200,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-<<<<<<< HEAD
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows/flutter/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows -BC:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64 --check-stamp-file C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/flutter/CMakeFiles/generate.stamp
-=======
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\khuthon_2025real\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">C:\khuthon_2025real\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/khuthon_2025real/windows/flutter/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/khuthon_2025real/windows -BC:/khuthon_2025real/build/windows/x64 --check-stamp-file C:/khuthon_2025real/build/windows/x64/flutter/CMakeFiles/generate.stamp
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -288,18 +213,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-<<<<<<< HEAD
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
-=======
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\khuthon_2025real\windows\flutter\ephemeral\generated_config.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\khuthon_2025real\build\windows\x64\flutter\CMakeFiles\generate.stamp</Outputs>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc" />
     <ClCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc" />
     <ClCompile Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc" />
@@ -308,27 +227,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ProjectReference Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\ZERO_CHECK.vcxproj">
       <Project>{BC65D84B-FEA3-3AAE-AE8F-E0CAB61285B2}</Project>
-=======
-    <ClCompile Include="C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\core_implementations.cc" />
-    <ClCompile Include="C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\standard_codec.cc" />
-    <ClCompile Include="C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\flutter_engine.cc" />
-    <ClCompile Include="C:\khuthon_2025real\windows\flutter\ephemeral\cpp_client_wrapper\flutter_view_controller.cc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="C:\khuthon_2025real\build\windows\x64\ZERO_CHECK.vcxproj">
-      <Project>{37311419-ADFD-341B-9E0C-EBAB095FA5B1}</Project>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-<<<<<<< HEAD
     <ProjectReference Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\flutter\flutter_assemble.vcxproj">
       <Project>{1665D0FD-A597-372C-AD11-6DE583E7192D}</Project>
-=======
-    <ProjectReference Include="C:\khuthon_2025real\build\windows\x64\flutter\flutter_assemble.vcxproj">
-      <Project>{5C161D25-FBD5-312B-845B-2424E901B73C}</Project>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Name>flutter_assemble</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

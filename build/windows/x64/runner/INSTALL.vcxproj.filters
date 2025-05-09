@@ -1,21 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-<<<<<<< HEAD
     <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\CMakeFiles\b13492430c298b6f0db2fec994e97787\INSTALL_force.rule">
-=======
-    <CustomBuild Include="C:\khuthon_2025real\build\windows\x64\CMakeFiles\3fa3dd4355f7d6255f8c3edfbf8f5b9c\INSTALL_force.rule">
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-<<<<<<< HEAD
       <UniqueIdentifier>{E2F35C8D-4579-3807-A49B-63FBF83A9969}</UniqueIdentifier>
-=======
-      <UniqueIdentifier>{B9C91CA6-7FB2-350E-965A-6C7E74E49B29}</UniqueIdentifier>
->>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     </Filter>
   </ItemGroup>
 </Project>
