@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import '../models/crop.dart';
 import '../services/crop_parser.dart';
 import '../data/task_rules.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ResultScreen extends StatefulWidget {
   final String result;
@@ -112,6 +113,22 @@ class _ResultScreenState extends State<ResultScreen> {
                           Text('물주기: ${crop.waterCycle}'),
                           Text('햇빛: ${crop.lightNeeds}'),
                           Text('설명: ${crop.description}'),
+                          IconButton(
+                            icon : Icon(Icons.shopping_cart),
+                            tooltip: '구매 링크',
+                            onPressed: () async {
+                              final query = Uri.encodeComponent(crop.name);
+                              final url = 'https://search.shopping.naver.com/ns/search?query=$query';
+                              if (await canLaunchUrl(Uri.parse(url))) {
+                                await launchUrl(Uri.parse(url));
+                              } 
+                              else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('링크를 열 수 없습니다.')),
+                                  );
+                              }
+                            }
+                          )
                         ],
                       ),
                       value: isSelected,
