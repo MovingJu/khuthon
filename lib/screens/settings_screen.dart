@@ -10,7 +10,9 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: ['email', 'https://www.googleapis.com/auth/userinfo.profile'],
+  );
   User? _user;
 
   @override
@@ -73,7 +75,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      backgroundImage: NetworkImage(_user?.photoURL ?? ''),
+                      backgroundImage:
+                          _user?.photoURL != null && _user!.photoURL!.isNotEmpty
+                              ? NetworkImage(_user!.photoURL!)
+                              : const AssetImage('assets/default_profile.png')
+                                  as ImageProvider,
                     ),
                     const SizedBox(height: 20),
                     Text(
