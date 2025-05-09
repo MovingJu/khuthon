@@ -45,7 +45,7 @@ class _ResultScreenState extends State<ResultScreen> {
         child:
             _crops.isEmpty
                 ? const Text('추천 결과를 표시할 수 없습니다.')
-                : ListView.builder(
+                : ListView.builder( //크롭 class로 출력
               itemCount: _crops.length,
               itemBuilder: (context, index) {
                 final crop = _crops[index];
