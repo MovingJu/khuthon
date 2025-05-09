@@ -27,10 +27,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
       'type': 'choice',
       'choices': ['노지', '시설(비닐하우스)', '스마트팜'],
     },
-    {
-      'question': '신기술(스마트팜 등)에 관심이 있으신가요?',
-      'type': 'bool',
-    },
+    {'question': '신기술(스마트팜 등)에 관심이 있으신가요?', 'type': 'bool'},
   ];
 
   final List<Map<String, dynamic>> nonProQuestions = [
@@ -81,9 +78,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
         // 결과 화면으로 질문-답변 쌍 리스트 전달
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-            builder: (_) => InputScreen(qaPairs: qaPairs),
-          ),
+          MaterialPageRoute(builder: (_) => InputScreen(qaPairs: qaPairs)),
         );
       }
     });
@@ -100,22 +95,28 @@ class _SurveyScreenState extends State<SurveyScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('당신은 전문 농업인입니까?', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+              Text(
+                '당신은 전문 농업인입니까?',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 32),
               ElevatedButton(
-                onPressed: () => setState(() {
-                  isProFarmer = true;
-                  currentIndex = 0;
-                  qaPairs.clear();
-                }),
+                onPressed:
+                    () => setState(() {
+                      isProFarmer = true;
+                      currentIndex = 0;
+                      qaPairs.clear();
+                    }),
                 child: Text('예'),
               ),
+              Container(height: 10),
               ElevatedButton(
-                onPressed: () => setState(() {
-                  isProFarmer = false;
-                  currentIndex = 0;
-                  qaPairs.clear();
-                }),
+                onPressed:
+                    () => setState(() {
+                      isProFarmer = false;
+                      currentIndex = 0;
+                      qaPairs.clear();
+                    }),
                 child: Text('아니오'),
               ),
             ],
@@ -139,22 +140,18 @@ class _SurveyScreenState extends State<SurveyScreen> {
             ),
             SizedBox(height: 32),
             if (q['type'] == 'bool') ...[
-              ElevatedButton(
-                onPressed: () => _next(true),
-                child: Text('예'),
-              ),
-              ElevatedButton(
-                onPressed: () => _next(false),
-                child: Text('아니오'),
-              ),
+              ElevatedButton(onPressed: () => _next(true), child: Text('예')),
+              ElevatedButton(onPressed: () => _next(false), child: Text('아니오')),
             ] else if (q['type'] == 'choice') ...[
-              ...(q['choices'] as List<String>).map((choice) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6.0),
-                child: ElevatedButton(
-                  onPressed: () => _next(choice),
-                  child: Text(choice),
+              ...(q['choices'] as List<String>).map(
+                (choice) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6.0),
+                  child: ElevatedButton(
+                    onPressed: () => _next(choice),
+                    child: Text(choice),
+                  ),
                 ),
-              )),
+              ),
             ],
             Spacer(),
             Text(
