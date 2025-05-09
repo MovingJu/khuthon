@@ -10,6 +10,7 @@ import 'screens/settings_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Hive.registerAdapter(CropDataAdapter());
 
   print('🔍 Firebase 초기화 준비중...');
 
