@@ -36,6 +36,7 @@ dependencies:
   hive_flutter: ^1.1.0
   firebase_core: ^2.25.4   # ✅ Firebase 기본 코어
   firebase_auth: ^4.17.8   # ✅ 인증용
+  cloud_firestore: ^4.15.4 # 구글계정, 로컬DB 연동
   google_sign_in: ^6.2.1
   table_calendar: ^3.0.0
   flutter_launcher_icons: ^0.13.1
