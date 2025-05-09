@@ -4,12 +4,24 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../data/task_rules.dart'; // CropData 정의된 곳
 
-/// 캘린더 이벤트 모델
+/// 캘린더 이벤트 모델 (직렬화용 JSON)
 class CalendarEvent {
   final String plantName;
   final EventType type;
 
   CalendarEvent(this.plantName, this.type);
+
+  Map<String, dynamic> toJson() => {
+        'plantName': plantName,
+        'type': type.index,
+      };
+
+  static CalendarEvent fromJson(Map<String, dynamic> json) {
+    return CalendarEvent(
+      json['plantName'] as String,
+      EventType.values[json['type'] as int],
+    );
+  }
 
   @override
   String toString() {
@@ -35,42 +47,68 @@ class MyFarmScreen extends StatefulWidget {
 
 class _MyFarmScreenState extends State<MyFarmScreen> {
   Box<CropData>? cropBox;
+  Box<List>? eventBox;
+
   DateTime _focusedDay = DateTime.now();
   DateTime _selectedDay = DateTime.now();
-  final Map<DateTime, List<CalendarEvent>> _events = {};
 
   @override
   void initState() {
     super.initState();
+    // 두 개의 Hive 박스 열기
     Hive.openBox<CropData>('crops').then((box) {
       setState(() => cropBox = box);
     });
-  }
-
-  List<CalendarEvent> _getEventsForDay(DateTime day) {
-    final key = DateTime(day.year, day.month, day.day);
-    return _events[key] ?? [];
-  }
-
-  void _addEvent(String plantName, EventType type) {
-    final key = DateTime(_selectedDay.year, _selectedDay.month, _selectedDay.day);
-    final list = _events[key] ?? <CalendarEvent>[];
-    list.add(CalendarEvent(plantName, type));
-    setState(() {
-      _events[key] = list;
+    Hive.openBox<List>('events').then((box) {
+      setState(() => eventBox = box);
     });
   }
 
-  void _deleteEvent(DateTime day, CalendarEvent event) {
-    final key = DateTime(day.year, day.month, day.day);
-    final list = _events[key];
-    if (list != null) {
-      setState(() {
-        list.remove(event);
-        if (list.isEmpty) _events.remove(key);
-      });
-    }
+  String _dateKey(DateTime day) =>
+      '${day.year}-${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+
+  List<CalendarEvent> _getEventsForDay(DateTime day) {
+    if (eventBox == null) return [];
+    final key = _dateKey(day);
+    final rawList = eventBox!.get(key, defaultValue: <dynamic>[])!;
+    return rawList
+        .cast<Map>()
+        .map((m) => CalendarEvent.fromJson(Map<String, dynamic>.from(m)))
+        .toList();
   }
+
+  void _addEvent(String plantName, EventType type) {
+    if (eventBox == null) return;
+    final key = _dateKey(_selectedDay);
+    final rawList = List<Map<String, dynamic>>.from(
+        eventBox!.get(key, defaultValue: <dynamic>[])!);
+    rawList.add(CalendarEvent(plantName, type).toJson());
+    eventBox!.put(key, rawList);
+    setState(() {}); // UI 갱신
+  }
+
+  void _deleteEvent(DateTime day, CalendarEvent event) {
+  if (eventBox == null) return;
+  final key = _dateKey(day);
+  // 기존 리스트 가져오기
+  final rawList = List<Map<String, dynamic>>.from(
+    eventBox!.get(key, defaultValue: <dynamic>[])!
+  );
+  // 첫 번째로 일치하는 항목의 인덱스 찾기
+  final idx = rawList.indexWhere((m) {
+    final e = CalendarEvent.fromJson(Map<String, dynamic>.from(m));
+    return e.plantName == event.plantName && e.type == event.type;
+  });
+  if (idx != -1) {
+    rawList.removeAt(idx);               // 해당 인덱스 하나만 삭제
+    if (rawList.isEmpty) {
+      eventBox!.delete(key);             // 리스트가 비면 키 자체 삭제
+    } else {
+      eventBox!.put(key, rawList);       // 아니면 업데이트
+    }
+    setState(() {});                     // UI 갱신
+  }
+}
 
   Widget _buildEventList() {
     final dayEvents = _getEventsForDay(_selectedDay);
@@ -96,7 +134,7 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (cropBox == null) {
+    if (cropBox == null || eventBox == null) {
       return const Scaffold(
         body: Center(child: CircularProgressIndicator()),
       );
@@ -150,14 +188,14 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                       child: ListTile(
                         title: Text(
                           crop.name,
-                          style: const TextStyle(fontSize: 18, color: Colors.black,),
+                          style: const TextStyle(fontSize: 18, color: Colors.black),
                         ),
-                        subtitle: Text('물 주기: ${crop.waterperiod}일 후'),
+                        subtitle: Text('물 주기 팁: ${crop.waterperiod}'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.opacity, color: Colors. blueAccent,),
+                              icon: const Icon(Icons.opacity, color: Colors. blue,),
                               tooltip: '물주기 기록',
                               onPressed: () => _addEvent(crop.name, EventType.water),
                             ),
@@ -171,7 +209,6 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                               tooltip: '작물 삭제',
                               color: Colors.redAccent,
                               onPressed: () {
-                                // 확인 다이얼로그 후 삭제
                                 showDialog(
                                   context: context,
                                   builder: (_) => AlertDialog(
@@ -196,7 +233,6 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                           ],
                         ),
                         onLongPress: () {
-                          // 롱프레스 시 해당 날짜 이벤트 삭제
                           final todayEvents = _getEventsForDay(_selectedDay);
                           CalendarEvent? target;
                           for (var ev in todayEvents) {
