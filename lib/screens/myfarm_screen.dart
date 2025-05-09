@@ -145,28 +145,48 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
       appBar: AppBar(
           title: const Text('내 농장'),
           actions: [
-            IconButton(
-            icon: const Icon(Icons.sync),
-            tooltip: '동기화',
-            onPressed: () async {
-              try {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('동기화 중...')),
-                );
-                await SyncService.syncByTimestamp();
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('동기화 완료!')),
-                );
-                setState(() {}); // 동기화 후 UI 갱신
-              } catch (e) {
-                if (!context.mounted) return;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('동기화 실패: $e')),
-                );
-              }
-            },
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.upload),
+                  label: const Text('업로드'),
+                  onPressed: () async {
+                    try {
+                      await SyncService.uploadHiveToFirestore();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('데이터 업로드 완료!')),
+                      );
+                    } catch (e) {
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('업로드 실패: $e')),
+                      );
+                    }
+                  },
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.download),
+                  label: const Text('다운로드'),
+                  onPressed: () async {
+                    try {
+                      await SyncService.downloadFirestoreToHive();
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('데이터 다운로드 완료!')),
+                      );
+                    } catch (e) {
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('다운로드 실패: $e')),
+                      );
+                    }
+                  },
+                ),
+              ],
+            )
           ],
       ),
       body: Column(
