@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
+import '../services/syncdata_service.dart';
 import '../data/task_rules.dart'; // CropData 정의된 곳
 
 /// 캘린더 이벤트 모델 (직렬화용 JSON)
@@ -141,7 +141,33 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: const Text('내 농장')),
+      appBar: AppBar(
+          title: const Text('내 농장'),
+          actions: [
+            IconButton(
+            icon: const Icon(Icons.sync),
+            tooltip: '동기화',
+            onPressed: () async {
+              try {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('동기화 중...')),
+                );
+                await SyncService.syncWithCloud();
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('동기화 완료!')),
+                );
+                setState(() {}); // 동기화 후 UI 갱신
+              } catch (e) {
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('동기화 실패: $e')),
+                );
+              }
+            },
+          ),
+          ],
+      ),
       body: Column(
         children: [
           // 1) 달력
