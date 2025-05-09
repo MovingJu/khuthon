@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('당신만을 위한 작물 플랫폼, 작물픽!'),
+        title: const Text('고민 제로 작물 플렛폼, 작물픽!'),
         centerTitle: true,
         toolbarHeight: 100, // 💡 AppBar 높이 키움
         actions: [

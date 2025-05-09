@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:khuthon/screens/input_screen.dart';
-import 'result_screen.dart';
 
 class SurveyScreen extends StatefulWidget {
   const SurveyScreen({super.key});
