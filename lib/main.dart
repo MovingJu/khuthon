@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart' show kIsWeb; // ✅ 추가
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:firebase_auth/firebase_auth.dart'; // ✅ 추가
 import 'package:khuthon/data/task_rules.dart';
 import 'screens/home_screen.dart';
+import 'screens/settings_screen.dart'; // ✅ 추가
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ✅ 환경변수 로드
   await dotenv.load(fileName: ".env");
 
-  // ✅ Hive 초기화
   await Hive.initFlutter();
   Hive.registerAdapter(CropDataAdapter());
 
-  // ✅ Firebase 초기화 (웹/모바일 분기)
   if (kIsWeb) {
     await Firebase.initializeApp(
       options: FirebaseOptions(
@@ -29,11 +28,13 @@ Future<void> main() async {
         measurementId: dotenv.env['MEASUREMENT_ID'],
       ),
     );
+
+    // ✅ 웹: 로그인 상태 유지 설정
+    await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
   } else {
     await Firebase.initializeApp();
   }
 
-  // ✅ 앱 실행
   runApp(const MyApp());
 }
 
@@ -46,7 +47,30 @@ class MyApp extends StatelessWidget {
       title: '작물픽',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.green, useMaterial3: true),
-      home: const HomePage(),
+      home: const AuthGate(), // ✅ 로그인 상태 따라 화면 분기
+    );
+  }
+}
+
+// ✅ 로그인 상태 감지 위젯
+class AuthGate extends StatelessWidget {
+  const AuthGate({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        } else if (snapshot.hasData) {
+          return const HomePage(); // 로그인 되어 있으면 홈으로
+        } else {
+          return const SettingsScreen(); // 로그인 필요 시 로그인 화면
+        }
+      },
     );
   }
 }
