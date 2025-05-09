@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:html' as html; // ✅ 웹 세션용 추가
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -11,7 +13,35 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-  User? _user; // ✅ 로그인한 유저 정보 저장
+  User? _user;
+
+  @override
+  void initState() {
+    super.initState();
+    _restoreSession(); // ✅ 세션에서 로그인 상태 복구 시도
+  }
+
+  Future<void> _restoreSession() async {
+    if (kIsWeb) {
+      final isLoggedIn = html.window.sessionStorage['isLoggedIn'];
+      if (isLoggedIn == 'true') {
+        final currentUser = FirebaseAuth.instance.currentUser;
+        if (currentUser != null) {
+          setState(() {
+            _user = currentUser;
+          });
+        }
+      }
+    } else {
+      // 모바일: FirebaseAuth 상태만 보면 됨
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        setState(() {
+          _user = currentUser;
+        });
+      }
+    }
+  }
 
   Future<void> _handleGoogleSignIn() async {
     try {
@@ -33,8 +63,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           .signInWithCredential(credential);
 
       setState(() {
-        _user = userCredential.user; // ✅ 로그인 성공 시 유저 정보 저장
+        _user = userCredential.user;
       });
+
+      // ✅ 세션에 로그인 상태 저장 (웹 전용)
+      if (kIsWeb) {
+        html.window.sessionStorage['isLoggedIn'] = 'true';
+      }
 
       print('로그인 성공: ${_user?.displayName}');
     } catch (e) {
@@ -75,6 +110,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       onPressed: () async {
                         await FirebaseAuth.instance.signOut();
                         await _googleSignIn.signOut();
+
+                        // ✅ 세션 초기화 (웹 전용)
+                        if (kIsWeb) {
+                          html.window.sessionStorage.remove('isLoggedIn');
+                        }
+
                         setState(() {
                           _user = null;
                         });
