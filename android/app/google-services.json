@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "340478689326",
+    "project_id": "khuthon-37db0",
+    "storage_bucket": "khuthon-37db0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340478689326:android:cc1f7e5703bbcb1fcadfbf",
+        "android_client_info": {
+          "package_name": "com.khukedase.khuthon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340478689326-lgsupcehnfmljc7chs6cv67k1c948k6v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.khukedase.khuthon",
+            "certificate_hash": "ff31c6e4cd4ab4c8e94a33f03627c348570223be"
+          }
+        },
+        {
+          "client_id": "340478689326-kqpbak15905s74u6a77d6brf9aqjikdh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBieW3hNSAJwz2AlYIHO6xG_QW0tgEUVvE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340478689326-kqpbak15905s74u6a77d6brf9aqjikdh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
