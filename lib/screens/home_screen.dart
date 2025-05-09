@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   // 탭에 표시할 페이지 리스트
   final List<Widget> _pages = [
     HomeTab(),
-    InputScreen(qaPairs: [],),
+    InputScreen(qaPairs: []),
     ResultScreen(),
     SettingsScreen(),
   ];
@@ -32,16 +32,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('당신만을 위한 작물 플랫폼, 작물픽!'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('당신만을 위한 작물 플랫폼, 작물픽!'), centerTitle: true),
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.input), label: '인풋'),
-          BottomNavigationBarItem(icon: Icon(Icons.bus_alert_outlined), label: '결과'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.bus_alert_outlined),
+            label: '결과',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: '설정'),
         ],
         currentIndex: _selectedIndex,
@@ -61,10 +61,7 @@ class HomeTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset(
-            'assets/logo.png',
-            height: 120,
-          ),
+          Image.asset('assets/logo.png', height: 120),
           const SizedBox(height: 40),
           Row(
             children: [
@@ -90,9 +87,7 @@ class HomeTab extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (_) => MyFarmScreen(),
-                      ),
+                      MaterialPageRoute(builder: (_) => MyFarmScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
