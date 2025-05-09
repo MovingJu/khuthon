@@ -7,7 +7,11 @@ events:
       - "C:/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:233 (message)"
       - "CMakeLists.txt:3 (project)"
     message: |
+<<<<<<< HEAD
       The system is: Windows - 10.0.19045 - AMD64
+=======
+      The system is: Windows - 10.0.26100 - AMD64
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
   -
     kind: "message-v1"
     backtrace:
@@ -24,9 +28,15 @@ events:
       The output was:
       0
       msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+<<<<<<< HEAD
       鍮뚮뱶 ?쒖옉: 2025-05-09 ?ㅽ썑 11:42:44
       
       1 ?몃뱶??"C:\\Users\\dldbs\\Desktop\\khuthon\\khuthon_2025\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+=======
+      鍮뚮뱶 ?쒖옉: 2025-05-09 ?ㅽ썑 11:34:28
+      
+      1 ?몃뱶??"C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       PrepareForBuild:
         "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
         援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
@@ -39,7 +49,11 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+<<<<<<< HEAD
         CompilerIdCXX.vcxproj -> C:\\Users\\dldbs\\Desktop\\khuthon\\khuthon_2025\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.exe
+=======
+        CompilerIdCXX.vcxproj -> C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.exe
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -47,13 +61,21 @@ events:
       FinalizeBuildStatus:
         "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
         "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+<<<<<<< HEAD
       "C:\\Users\\dldbs\\Desktop\\khuthon\\khuthon_2025\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+=======
+      "C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\3.28.3-msvc11\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       
       鍮뚮뱶?덉뒿?덈떎.
           寃쎄퀬 0媛?
           ?ㅻ쪟 0媛?
       
+<<<<<<< HEAD
       寃쎄낵 ?쒓컙: 00:00:01.71
+=======
+      寃쎄낵 ?쒓컙: 00:00:02.89
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -61,7 +83,11 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
+<<<<<<< HEAD
         C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/CMakeFiles/3.28.3-msvc11/CompilerIdCXX/CompilerIdCXX.exe
+=======
+        C:/khuthon_2025real/build/windows/x64/CMakeFiles/3.28.3-msvc11/CompilerIdCXX/CompilerIdCXX.exe
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
       
   -
     kind: "try_compile-v1"
@@ -72,8 +98,13 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
+<<<<<<< HEAD
       source: "C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-dy1zlo"
       binary: "C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-dy1zlo"
+=======
+      source: "C:/khuthon_2025real/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-n93tst"
+      binary: "C:/khuthon_2025real/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-n93tst"
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -82,6 +113,7 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
+<<<<<<< HEAD
         Change Dir: 'C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-dy1zlo'
         
         Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_caaa4.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
@@ -110,12 +142,46 @@ events:
           "cmTC_caaa4.dir\\Debug\\cmTC_caaa4.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
           "cmTC_caaa4.dir\\Debug\\cmTC_caaa4.tlog\\cmTC_caaa4.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
         "C:\\Users\\dldbs\\Desktop\\khuthon\\khuthon_2025\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-dy1zlo\\cmTC_caaa4.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+=======
+        Change Dir: 'C:/khuthon_2025real/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-n93tst'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1904d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 2025-05-09 ?ㅽ썑 11:34:32
+        
+        1 ?몃뱶??"C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-n93tst\\cmTC_1904d.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_1904d.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-n93tst\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_1904d.dir\\Debug\\cmTC_1904d.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_1904d.dir\\Debug\\cmTC_1904d.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_1904d.dir\\Debug\\cmTC_1904d.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_1904d.dir\\Debug\\\\" /Fd"cmTC_1904d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33811(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_1904d.dir\\Debug\\\\" /Fd"cmTC_1904d.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\CMake\\CMake\\share\\cmake-3.28\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-n93tst\\Debug\\cmTC_1904d.exe" /INCREMENTAL /ILK:"cmTC_1904d.dir\\Debug\\cmTC_1904d.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/khuthon_2025real/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-n93tst/Debug/cmTC_1904d.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/khuthon_2025real/build/windows/x64/CMakeFiles/CMakeScratch/TryCompile-n93tst/Debug/cmTC_1904d.lib" /MACHINE:X64  /machine:x64 cmTC_1904d.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_1904d.vcxproj -> C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-n93tst\\Debug\\cmTC_1904d.exe
+        FinalizeBuildStatus:
+          "cmTC_1904d.dir\\Debug\\cmTC_1904d.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_1904d.dir\\Debug\\cmTC_1904d.tlog\\cmTC_1904d.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\khuthon_2025real\\build\\windows\\x64\\CMakeFiles\\CMakeScratch\\TryCompile-n93tst\\cmTC_1904d.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
         
         鍮뚮뱶?덉뒿?덈떎.
             寃쎄퀬 0媛?
             ?ㅻ쪟 0媛?
         
+<<<<<<< HEAD
         寃쎄낵 ?쒓컙: 00:00:00.95
+=======
+        寃쎄낵 ?쒓컙: 00:00:02.49
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
         
       exitCode: 0
 ...

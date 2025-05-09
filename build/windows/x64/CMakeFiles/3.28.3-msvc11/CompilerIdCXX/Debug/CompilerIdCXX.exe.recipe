@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\CMakeFiles\3.28.3-msvc11\CompilerIdCXX\CompilerIdCXX.exe</FullPath>
+=======
+      <FullPath>C:\khuthon_2025real\build\windows\x64\CMakeFiles\3.28.3-msvc11\CompilerIdCXX\CompilerIdCXX.exe</FullPath>
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

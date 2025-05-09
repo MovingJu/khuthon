@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ^C:\USERS\DLDBS\DESKTOP\KHUTHON\KHUTHON_2025\BUILD\WINDOWS\X64\CMAKEFILES\FA3BC091C643424AF677E459CDAD3BB2\FLUTTER_WINDOWS.DLL.RULE
 setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter_windows_3.29.3-stable\flutter PROJECT_DIR=C:\Users\dldbs\Desktop\khuthon\khuthon_2025 FLUTTER_ROOT=C:\flutter_windows_3.29.3-stable\flutter FLUTTER_EPHEMERAL_DIR=C:\Users\dldbs\Desktop\khuthon\khuthon_2025\windows\flutter\ephemeral PROJECT_DIR=C:\Users\dldbs\Desktop\khuthon\khuthon_2025 FLUTTER_TARGET=C:\Users\dldbs\Desktop\khuthon\khuthon_2025\lib\main.dart DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\Users\dldbs\Desktop\khuthon\khuthon_2025\.dart_tool\package_config.json C:/flutter_windows_3.29.3-stable/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+=======
+^C:\KHUTHON_2025REAL\BUILD\WINDOWS\X64\CMAKEFILES\CF2156A6B9A8415E16255D3D2161064D\FLUTTER_WINDOWS.DLL.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E env FLUTTER_ROOT=C:\flutter PROJECT_DIR=C:\khuthon_2025real FLUTTER_ROOT=C:\flutter FLUTTER_EPHEMERAL_DIR=C:\khuthon_2025real\windows\flutter\ephemeral PROJECT_DIR=C:\khuthon_2025real FLUTTER_TARGET=C:\khuthon_2025real\lib\main.dart DART_OBFUSCATION=false TRACK_WIDGET_CREATION=true TREE_SHAKE_ICONS=false PACKAGE_CONFIG=C:\khuthon_2025real\.dart_tool\package_config.json C:/flutter/packages/flutter_tools/bin/tool_backend.bat windows-x64 Debug
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -8,7 +14,11 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
+<<<<<<< HEAD
 ^C:\USERS\DLDBS\DESKTOP\KHUTHON\KHUTHON_2025\BUILD\WINDOWS\X64\CMAKEFILES\0726EB9388924CDECE7A30F95CBFF8D5\FLUTTER_ASSEMBLE.RULE
+=======
+^C:\KHUTHON_2025REAL\BUILD\WINDOWS\X64\CMAKEFILES\A7DCC2E0220F7C4282837B8AC00FF8BD\FLUTTER_ASSEMBLE.RULE
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 setlocal
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
@@ -16,9 +26,15 @@ endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd
+<<<<<<< HEAD
 ^C:\USERS\DLDBS\DESKTOP\KHUTHON\KHUTHON_2025\WINDOWS\FLUTTER\CMAKELISTS.TXT
 setlocal
 "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows -BC:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64 --check-stamp-file C:/Users/dldbs/Desktop/khuthon/khuthon_2025/build/windows/x64/flutter/CMakeFiles/generate.stamp
+=======
+^C:\KHUTHON_2025REAL\WINDOWS\FLUTTER\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/khuthon_2025real/windows -BC:/khuthon_2025real/build/windows/x64 --check-stamp-file C:/khuthon_2025real/build/windows/x64/flutter/CMakeFiles/generate.stamp
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

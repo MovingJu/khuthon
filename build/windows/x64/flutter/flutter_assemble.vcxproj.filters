@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+<<<<<<< HEAD
     <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\CMakeFiles\fa3bc091c643424af677e459cdad3bb2\flutter_windows.dll.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
@@ -15,6 +16,22 @@
   <ItemGroup>
     <Filter Include="CMake Rules">
       <UniqueIdentifier>{E2F35C8D-4579-3807-A49B-63FBF83A9969}</UniqueIdentifier>
+=======
+    <CustomBuild Include="C:\khuthon_2025real\build\windows\x64\CMakeFiles\cf2156a6b9a8415e16255d3d2161064d\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\khuthon_2025real\build\windows\x64\CMakeFiles\a7dcc2e0220f7c4282837b8ac00ff8bd\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\khuthon_2025real\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\khuthon_2025real\build\windows\x64\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B9C91CA6-7FB2-350E-965A-6C7E74E49B29}</UniqueIdentifier>
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
     </Filter>
   </ItemGroup>
 </Project>

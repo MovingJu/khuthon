@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Install script for directory: C:/Users/dldbs/Desktop/khuthon/khuthon_2025/windows/flutter
+=======
+# Install script for directory: C:/khuthon_2025real/windows/flutter
+>>>>>>> 5ace4fc3a3683e59d2448af9f32dda52eae13987
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
