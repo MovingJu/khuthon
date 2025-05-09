@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\dldbs\Desktop\khuthon\khuthon_2025\build\windows\x64\CMakeFiles\0726eb9388924cdece7a30f95cbff8d5\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E2F35C8D-4579-3807-A49B-63FBF83A9969}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
