@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
-import '../models/crop_data.dart'; // CropData 모델 import
+import '../data/task_rules.dart'; // CropData 모델 import
 
 class SyncService {
   /// Hive → Firestore로 업로드 (로컬 데이터를 클라우드에 저장)
