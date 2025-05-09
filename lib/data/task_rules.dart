@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-//
 part 'task_rules.g.dart';
 
 @HiveType(typeId:0)
