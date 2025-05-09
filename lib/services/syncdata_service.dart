@@ -9,7 +9,7 @@ class SyncService {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception('로그인 필요');
 
-    final box = await Hive.openBox<CropData>('crops');
+    final box = Hive.box<CropData>('crops');
     final crops = box.values.toList();
 
     final cropsRef = FirebaseFirestore.instance
@@ -23,16 +23,22 @@ class SyncService {
       await doc.reference.delete();
     }
 
-    // Hive의 모든 데이터를 Firestore에 업로드
+    // Hive의 모든 데이터를 Firestore에 업로드 (모든 필드 포함)
     for (final crop in crops) {
       await cropsRef.add({
         'name': crop.name,
         'waterperiod': crop.waterperiod,
         'sunneed': crop.sunneed,
         'description': crop.description,
+        'difficulty': crop.difficulty,
+        'info': crop.info,
+        'indoorfriendly': crop.indoorfriendly,
+        'sowingdate': crop.sowingdate,
+        'harvestdate': crop.harvestdate,
       });
     }
   }
+
 
   /// Firestore → Hive로 동기화 (클라우드 데이터를 로컬에 저장)
   static Future<void> downloadFirestoreToHive() async {
