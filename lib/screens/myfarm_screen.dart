@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../data/task_rules.dart'; // For CropData
+import '../data/task_rules.dart'; // CropData 정의된 곳
 
-/// 캘린더의 이벤트를 표현할 모델
+/// 캘린더 이벤트 모델
 class CalendarEvent {
   final String plantName;
   final EventType type;
@@ -12,11 +12,19 @@ class CalendarEvent {
   CalendarEvent(this.plantName, this.type);
 
   @override
-  String toString() =>
-      type == EventType.add ? '🆕 작물 추가: $plantName' : '💧 물주기: $plantName';
+  String toString() {
+    switch (type) {
+      case EventType.add:
+        return '🆕 작물 추가: $plantName';
+      case EventType.water:
+        return '💧 물주기: $plantName';
+      case EventType.harvest:
+        return '🌾 수확: $plantName';
+    }
+  }
 }
 
-enum EventType { add, water }
+enum EventType { add, water, harvest }
 
 class MyFarmScreen extends StatefulWidget {
   const MyFarmScreen({Key? key}) : super(key: key);
@@ -27,8 +35,6 @@ class MyFarmScreen extends StatefulWidget {
 
 class _MyFarmScreenState extends State<MyFarmScreen> {
   Box<CropData>? cropBox;
-
-  // 캘린더 관련 상태
   DateTime _focusedDay = DateTime.now();
   DateTime _selectedDay = DateTime.now();
   final Map<DateTime, List<CalendarEvent>> _events = {};
@@ -36,16 +42,14 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
   @override
   void initState() {
     super.initState();
-    _openCropBox();
-  }
-
-  Future<void> _openCropBox() async {
-    cropBox = await Hive.openBox<CropData>('crops');
-    setState(() {});
+    Hive.openBox<CropData>('crops').then((box) {
+      setState(() => cropBox = box);
+    });
   }
 
   List<CalendarEvent> _getEventsForDay(DateTime day) {
-    return _events[DateTime(day.year, day.month, day.day)] ?? [];
+    final key = DateTime(day.year, day.month, day.day);
+    return _events[key] ?? [];
   }
 
   void _addEvent(String plantName, EventType type) {
@@ -63,40 +67,30 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
     if (list != null) {
       setState(() {
         list.remove(event);
-        if (list.isEmpty) {
-          _events.remove(key);
-        }
+        if (list.isEmpty) _events.remove(key);
       });
     }
   }
 
-  void _showEventDialog(EventType type) {
-    final controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: Text(type == EventType.add ? '작물 추가 기록' : '물주기 기록'),
-        content: TextField(
-          controller: controller,
-          decoration: const InputDecoration(labelText: '식물 이름을 입력하세요'),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('취소'),
+  Widget _buildEventList() {
+    final dayEvents = _getEventsForDay(_selectedDay);
+    if (dayEvents.isEmpty) {
+      return const Center(child: Text('선택된 날짜에 기록된 이벤트가 없습니다.'));
+    }
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: dayEvents.length,
+      separatorBuilder: (_, __) => const Divider(),
+      itemBuilder: (ctx, idx) {
+        final e = dayEvents[idx];
+        return ListTile(
+          title: Text(e.toString()),
+          trailing: IconButton(
+            icon: const Icon(Icons.delete, color: Colors.redAccent),
+            onPressed: () => _deleteEvent(_selectedDay, e),
           ),
-          ElevatedButton(
-            onPressed: () {
-              final name = controller.text.trim();
-              if (name.isNotEmpty) {
-                _addEvent(name, type);
-                Navigator.pop(context);
-              }
-            },
-            child: const Text('확인'),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -112,45 +106,32 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
       appBar: AppBar(title: const Text('내 농장')),
       body: Column(
         children: [
-          // 달력 + 이벤트 마커
+          // 1) 달력
           TableCalendar<CalendarEvent>(
             firstDay: DateTime(2000),
             lastDay: DateTime(2100),
             focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
+            selectedDayPredicate: (d) => isSameDay(d, _selectedDay),
             eventLoader: _getEventsForDay,
-            onDaySelected: (selectedDay, focusedDay) {
-              setState(() {
-                _selectedDay = selectedDay;
-                _focusedDay = focusedDay;
-              });
-            },
-            calendarStyle: const CalendarStyle(
-              markerSize: 6,
-              markersMaxCount: 3,
-            ),
+            onDaySelected: (sel, foc) => setState(() {
+              _selectedDay = sel;
+              _focusedDay = foc;
+            }),
           ),
 
-          // 이벤트 등록 버튼
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () => _showEventDialog(EventType.add),
-                  child: const Text('작물 추가 기록'),
-                ),
-                ElevatedButton(
-                  onPressed: () => _showEventDialog(EventType.water),
-                  child: const Text('물주기 기록'),
-                ),
-              ],
-            ),
-          ),
+          const Divider(height: 1),
 
-          // 선택한 날짜의 이벤트 리스트
+          // 2) 선택된 날짜 이벤트 리스트
           Expanded(
+            flex: 2,
+            child: _buildEventList(),
+          ),
+
+          const Divider(height: 1),
+
+          // 3) 작물별 물주기·수확 버튼
+          Expanded(
+            flex: 3,
             child: ValueListenableBuilder<Box<CropData>>(
               valueListenable: cropBox!.listenable(),
               builder: (context, box, _) {
@@ -158,43 +139,48 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                 if (crops.isEmpty) {
                   return const Center(child: Text('아직 내 농장에 작물이 없습니다!'));
                 }
-
-                final dayKey = DateTime(_selectedDay.year, _selectedDay.month, _selectedDay.day);
-                final dayEvents = _getEventsForDay(_selectedDay);
-
-                return ListView(
+                return ListView.builder(
                   padding: const EdgeInsets.all(8),
-                  children: [
-                    if (dayEvents.isNotEmpty) ...[
-                      const Text('선택된 날짜 이벤트:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 4),
-                      ...dayEvents.map((e) => ListTile(
-                            title: Text(e.toString()),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.redAccent),
-                              onPressed: () => _deleteEvent(_selectedDay, e),
+                  itemCount: crops.length,
+                  itemBuilder: (ctx, i) {
+                    final crop = crops[i];
+                    return Card(
+                      margin: const EdgeInsets.symmetric(vertical: 6),
+                      child: ListTile(
+                        title: Text(crop.name, style: const TextStyle(fontSize: 18)),
+                        subtitle: Text('물 주기: ${crop.waterperiod}'),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.opacity),
+                              tooltip: '물주기 기록',
+                              onPressed: () => _addEvent(crop.name, EventType.water),
                             ),
-                          )),
-                      const Divider(),
-                    ],
-                    const Text('내 농장 작물 리스트:', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 4),
-                    ...crops.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final crop = entry.value;
-                      return Card(
-                        margin: const EdgeInsets.symmetric(vertical: 6),
-                        child: ListTile(
-                          title: Text(crop.name),
-                          subtitle: Text('Water Cycle: ${crop.waterperiod}'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete, color: Colors.redAccent),
-                            onPressed: () => box.deleteAt(index),
-                          ),
+                            IconButton(
+                              icon: const Icon(Icons.grass),
+                              tooltip: '수확 기록',
+                              onPressed: () => _addEvent(crop.name, EventType.harvest),
+                            ),
+                          ],
                         ),
-                      );
-                    }),
-                  ],
+                        // 롱프레스로 해당 날짜의 이 작물 이벤트 삭제
+                        onLongPress: () {
+                          final todayEvents = _getEventsForDay(_selectedDay);
+                          CalendarEvent? target;
+                          for (var ev in todayEvents) {
+                            if (ev.plantName == crop.name) {
+                              target = ev;
+                              break;
+                            }
+                          }
+                          if (target != null) {
+                            _deleteEvent(_selectedDay, target);
+                          }
+                        },
+                      ),
+                    );
+                  },
                 );
               },
             ),
@@ -203,7 +189,7 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO: Navigate to add new crop screen
+          // TODO: 새 작물 추가 화면으로 네비게이션
         },
         child: const Icon(Icons.add),
       ),
@@ -211,6 +197,6 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
   }
 }
 
-// 연-월-일 비교
+/// 연-월-일 비교 유틸
 bool isSameDay(DateTime a, DateTime b) =>
     a.year == b.year && a.month == b.month && a.day == b.day;
