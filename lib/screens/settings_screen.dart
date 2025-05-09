@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:hive/hive.dart';
-import '../button/sync_button.dart';
 import '../services/syncdata_service.dart';
 import '../data/task_rules.dart';
 
