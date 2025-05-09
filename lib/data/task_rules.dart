@@ -31,11 +31,15 @@ class CropData extends HiveObject{
  @HiveField(8)
  DateTime? harvestdate;
 
+ @HiveField(9)
+ DateTime? updatedAt;
+ 
  CropData({
     required this.name,
     required this.waterperiod,
     required this.sunneed,
-    required this.description
+    required this.description,
+    this.updatedAt
  });
 }
 
