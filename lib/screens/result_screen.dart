@@ -14,7 +14,7 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   List<Crop> _crops = [];
-  int? _selectedIndex;
+  Set<int> _selectedIndexes = {};
 
   @override
   void initState() {
@@ -36,18 +36,40 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   Future<void> _addToFarm() async {
-    if (_selectedIndex == null) return;
-    final selectedCrop = _crops[_selectedIndex!];
+    if (_selectedIndexes.isEmpty) return;
     final box = await Hive.openBox<CropData>('crops');
-    await box.add(CropData(
-      name: selectedCrop.name,
-      waterperiod: selectedCrop.waterCycle,
-      sunneed: selectedCrop.lightNeeds,
-      description: selectedCrop.description,
-    ));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('${selectedCrop.name}이(가) 내 농장에 추가되었습니다!')),
-    );
+    int addedCount = 0;
+    for (final index in _selectedIndexes) {
+      final selectedCrop = _crops[index];
+      final alreadyExist = box.values.any((crop) => crop.name == selectedCrop.name);
+      if (alreadyExist) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('${selectedCrop.name}은(는) 이미 내 농장에 있습니다.'),
+            duration: Duration(seconds: 1),
+          ),
+        );
+        continue;
+      }
+      await box.add(CropData(
+        name: selectedCrop.name,
+        waterperiod: selectedCrop.waterCycle,
+        sunneed: selectedCrop.lightNeeds,
+        description: selectedCrop.description,
+      ));
+      addedCount++;
+    }
+    if (addedCount > 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('$addedCount개의 작물이 내 농장에 추가되었습니다!'),
+          duration: Duration(seconds: 1),
+        ),
+      );
+    }
+    setState(() {
+      _selectedIndexes.clear();
+    });
   }
 
   @override
@@ -58,14 +80,14 @@ class _ResultScreenState extends State<ResultScreen> {
         actions: [
           TextButton.icon(
             style: TextButton.styleFrom(
-              backgroundColor: Colors.green, // 원하는 배경색
-              foregroundColor: Colors.white, // 텍스트/아이콘 색
+              backgroundColor: Colors.green,
+              foregroundColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
               padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             ),
-            onPressed: _selectedIndex == null ? null : _addToFarm,
+            onPressed: _selectedIndexes.isEmpty ? null : _addToFarm,
             icon: const Icon(Icons.add, color: Colors.white),
             label: const Text('내 농장 추가', style: TextStyle(color: Colors.white)),
           ),
@@ -76,31 +98,36 @@ class _ResultScreenState extends State<ResultScreen> {
         child: _crops.isEmpty
             ? const Text('추천 결과를 표시할 수 없습니다.')
             : ListView.builder(
-          itemCount: _crops.length,
-          itemBuilder: (context, index) {
-            final crop = _crops[index];
-            return Card(
-              color: _selectedIndex == index ? Colors.green[100] : null,
-              child: ListTile(
-                title: Text(crop.name, style: TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('물주기: ${crop.waterCycle}'),
-                    Text('햇빛: ${crop.lightNeeds}'),
-                    Text('설명: ${crop.description}'),
-                  ],
-                ),
-                onTap: () {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
+                itemCount: _crops.length,
+                itemBuilder: (context, index) {
+                  final crop = _crops[index];
+                  final isSelected = _selectedIndexes.contains(index);
+                  return Card(
+                    color: isSelected ? Colors.green[100] : null,
+                    child: CheckboxListTile(
+                      title: Text(crop.name, style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('물주기: ${crop.waterCycle}'),
+                          Text('햇빛: ${crop.lightNeeds}'),
+                          Text('설명: ${crop.description}'),
+                        ],
+                      ),
+                      value: isSelected,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          if (value == true) {
+                            _selectedIndexes.add(index);
+                          } else {
+                            _selectedIndexes.remove(index);
+                          }
+                        });
+                      },
+                    ),
+                  );
                 },
-                selected: _selectedIndex == index,
               ),
-            );
-          },
-        ),
       ),
     );
   }
