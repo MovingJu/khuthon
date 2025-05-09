@@ -26,14 +26,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10), // 💡 위쪽 마진 10픽셀
+        child: SafeArea(
+          // ✅ SafeArea로 상단 패딩 확보
           child: AppBar(
             title: const Text(
               '고민 제로 작물 플렛폼, 작물픽!',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            centerTitle: true,
+            centerTitle: true, // ✅ 중앙 정렬
             toolbarHeight: 100,
             shape: const RoundedRectangleBorder(
               side: BorderSide(color: Colors.green, width: 4),
@@ -45,21 +45,23 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             actions: [
-              IconButton(
-                icon: const Icon(Icons.account_circle),
-                iconSize: 40,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => SettingsScreen()),
-                  );
-                },
+              Padding(
+                padding: const EdgeInsets.only(right: 5), // ✅ 오른쪽 끝에서 5픽셀 띄우기
+                child: IconButton(
+                  icon: const Icon(Icons.account_circle),
+                  iconSize: 50, // ✅ 아이콘 사이즈
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => SettingsScreen()),
+                    );
+                  },
+                ),
               ),
             ],
           ),
         ),
       ),
-
       body: _pages[_selectedIndex],
     );
   }
@@ -73,7 +75,7 @@ class HomeTab extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset('assets/logo.png', height: 150),
+          Image.asset('assets/logo.png', height: 200),
           const SizedBox(height: 40),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
