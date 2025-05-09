@@ -25,13 +25,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('고민 제로 작물 플렛폼, 작물픽!'),
+        title: const Text(
+          '고민 제로 작물 플렛폼, 작물픽!',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
-        toolbarHeight: 100, // 💡 AppBar 높이 키움
+        toolbarHeight: 100,
+        shape: const RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.green, // ✅ 테두리 색깔
+            width: 4, // ✅ 테두리 두께
+          ),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20), // ✅ 아랫부분 둥글게
+            bottomRight: Radius.circular(20),
+          ),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.account_circle),
-            iconSize: 40, // 💡 프로필 아이콘 키움
+            iconSize: 40,
             onPressed: () {
               Navigator.push(
                 context,
@@ -50,18 +63,17 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      // 💡 전체를 화면 중앙에 정렬
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // 💡 세로 중앙 정렬
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset('assets/logo.png', height: 150), // 💡 로고 조금 키움
+          Image.asset('assets/logo.png', height: 150),
           const SizedBox(height: 40),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center, // 💡 버튼도 중앙으로
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                width: 150, // 버튼 가로 폭 고정 (적당히 예쁘게)
+                width: 150,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
