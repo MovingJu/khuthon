@@ -11,29 +11,35 @@ class MyFarmScreen extends StatefulWidget {
 }
 
 class _MyFarmScreenState extends State<MyFarmScreen> {
-  late final Box<CropData> cropBox;
+  Box<CropData>? cropBox;
 
   @override
   void initState() {
     super.initState();
-    // Ensure the 'crops' box is open before using
-    cropBox = Hive.box<CropData>('crops');
+    _openCropBox();
+  }
+
+  Future<void> _openCropBox() async {
+    cropBox = await Hive.openBox<CropData>('crops');
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
+    if (cropBox == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('My Farm'),
-      ),
+      appBar: AppBar(title: const Text('내 농장')),
       body: ValueListenableBuilder<Box<CropData>>(
-        valueListenable: cropBox.listenable(),
+        valueListenable: cropBox!.listenable(),
         builder: (context, box, _) {
           final crops = box.values.toList();
           if (crops.isEmpty) {
-            return const Center(
-              child: Text('No crops added yet.'),
-            );
+            return const Center(child: Text('아직 내 농장에 작물이 없습니다!'));
           }
           return ListView.builder(
             padding: const EdgeInsets.all(8),
@@ -47,10 +53,12 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: ListTile(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   title: Text(
                     crop.name,
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Padding(
                     padding: const EdgeInsets.only(top: 6),
@@ -60,9 +68,11 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                         Text('Water Cycle: ${crop.waterperiod}'),
                         Text('Light Needs: ${crop.sunneed}'),
                         Text('Description: ${crop.description}'),
-                        if (crop.difficulty != null) Text('Difficulty: ${crop.difficulty}'),
+                        if (crop.difficulty != null)
+                          Text('Difficulty: ${crop.difficulty}'),
                         if (crop.info != null) Text('Info: ${crop.info}'),
-                        if (crop.indoorfriendly != null) Text('Indoor-friendly: ${crop.indoorfriendly}'),
+                        if (crop.indoorfriendly != null)
+                          Text('Indoor-friendly: ${crop.indoorfriendly}'),
                         if (crop.sowingdate != null)
                           Text('Sowing Date: ${crop.sowingdate!.toLocal().toIso8601String().split('T').first}'),
                         if (crop.harvestdate != null)
@@ -74,8 +84,8 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete, color: Colors.redAccent),
                     onPressed: () {
-                      // Delete this crop
-                      cropBox.deleteAt(index);
+                      // builder 에서 받은 non-nullable box를 사용
+                      box.deleteAt(index);
                     },
                   ),
                 ),
