@@ -49,6 +49,6 @@ class SyncService {
         //     : null,
       ));
     }
-    print('새 계정의 Firestore 데이터로 로컬 동기화 완료');
+    print('새 계정의 Firestore 데이터로 로컬 동기화 완료'); //동기화 확인
   }
 }
