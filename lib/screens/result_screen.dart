@@ -58,6 +58,7 @@ class _ResultScreenState extends State<ResultScreen> {
         waterperiod: selectedCrop.waterCycle,
         sunneed: selectedCrop.lightNeeds,
         description: selectedCrop.description,
+        updatedAt: DateTime.now(),
       ));
       addedCount++;
     }
