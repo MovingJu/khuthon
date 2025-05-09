@@ -33,7 +33,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
     {
       'question': '작물 재배의 목적은?',
       'type': 'choice',
-      'choices': ['자급자족', '관상/취미', '가족 체험'],
+      'choices': ['자급자족', '관상/취미', '공기 정화'],
     },
     {
       'question': '하루 관리 가능 시간은?',
