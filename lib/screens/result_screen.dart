@@ -120,7 +120,7 @@ class _ResultScreenState extends State<ResultScreen> {
                             tooltip: '구매 링크',
                             onPressed: () async {
                               final query = Uri.encodeComponent(crop.name);
-                              final url = 'https://search.shopping.naver.com/ns/search?query=$query';
+                              final url = 'https://search.shopping.naver.com/ns/search?query=$query씨앗';
                               if (await canLaunchUrl(Uri.parse(url))) {
                                 await launchUrl(Uri.parse(url),mode: LaunchMode.inAppBrowserView);
                               } 

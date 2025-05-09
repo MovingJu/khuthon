@@ -153,7 +153,7 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('동기화 중...')),
                 );
-                await SyncService.syncWithCloud();
+                await SyncService.syncByTimestamp();
                 if (!context.mounted) return;
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('동기화 완료!')),
@@ -226,7 +226,7 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                             tooltip: '구매 링크',
                             onPressed: () async {
                               final query = Uri.encodeComponent(crop.name);
-                              final url = 'https://search.shopping.naver.com/ns/search?query=$query';
+                              final url = 'https://search.shopping.naver.com/ns/search?query=$query씨앗';
                               if (await canLaunchUrl(Uri.parse(url))) {
                                 await launchUrl(Uri.parse(url),mode: LaunchMode.inAppBrowserView);
                               } 
