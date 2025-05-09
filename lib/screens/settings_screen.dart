@@ -71,6 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onPressed: () async {
                 try {
                   await SyncService.sync();
+                  print('동기화 끝');
                   if (!mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('동기화가 완료되었습니다!')),

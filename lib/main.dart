@@ -12,7 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env"); // ✅ 무조건 맨 위에서 실행 (웹/모바일 공통)
   await Hive.initFlutter();
-
+  await Hive.openBox<CropData>('crops');
   Hive.registerAdapter(CropDataAdapter());
   print('🔍 Firebase 초기화 준비중...');
 
