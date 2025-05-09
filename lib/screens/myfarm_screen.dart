@@ -255,11 +255,70 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // TODO: 새 작물 추가 화면으로 네비게이션
-        },
-        child: const Icon(Icons.add),
+  onPressed: () {
+    final nameCtrl = TextEditingController();
+    final waterCtrl = TextEditingController();
+    final sunCtrl = TextEditingController();
+    final descCtrl = TextEditingController();
+
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('새 작물 추가'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameCtrl,
+                decoration: const InputDecoration(labelText: '작물 이름'),
+              ),
+              TextField(
+                controller: waterCtrl,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(labelText: '물 주기(일)'),
+              ),
+              TextField(
+                controller: sunCtrl,
+                decoration: const InputDecoration(labelText: '광량 필요도'),
+              ),
+              TextField(
+                controller: descCtrl,
+                decoration: const InputDecoration(labelText: '설명'),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('취소'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              final name = nameCtrl.text.trim();
+              final water = waterCtrl.text.trim();
+              final sun  = sunCtrl.text.trim();
+              final desc = descCtrl.text.trim();
+              if (name.isNotEmpty) {
+                final newCrop = CropData(
+                  name: name,
+                  waterperiod: water,
+                  sunneed: sun,
+                  description: desc,
+                );
+                cropBox!.add(newCrop);
+              }
+              Navigator.pop(ctx);
+            },
+            child: const Text('추가'),
+          ),
+        ],
       ),
+    );
+  },
+  child: const Icon(Icons.add),
+),
     );
   }
 }
