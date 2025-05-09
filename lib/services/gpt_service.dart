@@ -6,7 +6,6 @@ class GptService {
   static Future<String> sendMessage(String message) async {
     final apiKey = dotenv.env['OPENAI_API_KEY'];
     const apiUrl = 'https://api.openai.com/v1/chat/completions';
-
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {
