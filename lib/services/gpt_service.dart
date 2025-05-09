@@ -6,6 +6,9 @@ class GptService {
   static Future<String> sendMessage(String message) async {
     final apiKey = dotenv.env['OPENAI_API_KEY'];
 
+    print('✅ dotenv loaded: ${dotenv.isInitialized}');
+    print('✅ API Key: ${dotenv.env['OPENAI_API_KEY']}');
+
     // ✅ 환경변수 확인 (디버깅용)
     if (apiKey == null || apiKey.isEmpty) {
       throw Exception('❗ API 키가 비어있습니다. dotenv가 로드되었는지 확인하세요.');
