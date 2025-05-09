@@ -1,0 +1,10 @@
+^C:\KHUTHON_2025REAL\BUILD\WINDOWS\X64\CMAKEFILES\7960FACB1FE3BF2C3E8DD27B00123D2F\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/khuthon_2025real/windows -BC:/khuthon_2025real/build/windows/x64 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/khuthon_2025real/build/windows/x64/khuthon.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
