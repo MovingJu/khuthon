@@ -129,7 +129,7 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
 
           const Divider(height: 1),
 
-          // 3) 작물별 물주기·수확 버튼
+          // 3) 작물별 물주기·수확·삭제 버튼
           Expanded(
             flex: 3,
             child: ValueListenableBuilder<Box<CropData>>(
@@ -145,27 +145,58 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                   itemBuilder: (ctx, i) {
                     final crop = crops[i];
                     return Card(
+                      color: Colors.lightGreen,
                       margin: const EdgeInsets.symmetric(vertical: 6),
                       child: ListTile(
-                        title: Text(crop.name, style: const TextStyle(fontSize: 18)),
-                        subtitle: Text('물 주기: ${crop.waterperiod}'),
+                        title: Text(
+                          crop.name,
+                          style: const TextStyle(fontSize: 18, color: Colors.black,),
+                        ),
+                        subtitle: Text('물 주기: ${crop.waterperiod}일 후'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                              icon: const Icon(Icons.opacity),
+                              icon: const Icon(Icons.opacity, color: Colors. blueAccent,),
                               tooltip: '물주기 기록',
                               onPressed: () => _addEvent(crop.name, EventType.water),
                             ),
                             IconButton(
-                              icon: const Icon(Icons.grass),
+                              icon: const Icon(Icons.grass, color: Colors.greenAccent,),
                               tooltip: '수확 기록',
                               onPressed: () => _addEvent(crop.name, EventType.harvest),
                             ),
+                            IconButton(
+                              icon: const Icon(Icons.delete),
+                              tooltip: '작물 삭제',
+                              color: Colors.redAccent,
+                              onPressed: () {
+                                // 확인 다이얼로그 후 삭제
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => AlertDialog(
+                                    title: Text('${crop.name} 을(를) 삭제할까요?'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        child: const Text('취소'),
+                                      ),
+                                      TextButton(
+                                        onPressed: () {
+                                          box.deleteAt(i);
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('삭제', style: TextStyle(color: Colors.red)),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
                           ],
                         ),
-                        // 롱프레스로 해당 날짜의 이 작물 이벤트 삭제
                         onLongPress: () {
+                          // 롱프레스 시 해당 날짜 이벤트 삭제
                           final todayEvents = _getEventsForDay(_selectedDay);
                           CalendarEvent? target;
                           for (var ev in todayEvents) {
