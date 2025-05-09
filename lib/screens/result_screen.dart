@@ -45,11 +45,26 @@ class _ResultScreenState extends State<ResultScreen> {
         child:
             _crops.isEmpty
                 ? const Text('추천 결과를 표시할 수 없습니다.')
-                : ListView.builder(
-                  itemCount: _crops.length,
-                  itemBuilder: (context, index) {
-                  },
-                ),
+                : ListView.builder( //크롭 class로 출력
+              itemCount: _crops.length,
+              itemBuilder: (context, index) {
+                final crop = _crops[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  child: ListTile(
+                    title: Text(crop.name, style: TextStyle(fontWeight: FontWeight.bold)),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('물주기: ${crop.waterCycle}'),
+                        Text('햇빛: ${crop.lightNeeds}'),
+                        Text('설명: ${crop.description}'),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            )
       ),
     );
   }
