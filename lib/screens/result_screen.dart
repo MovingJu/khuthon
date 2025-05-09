@@ -44,6 +44,7 @@ class _ResultScreenState extends State<ResultScreen> {
       final selectedCrop = _crops[index];
       final alreadyExist = box.values.any((crop) => crop.name == selectedCrop.name);
       if (alreadyExist) {
+        ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('${selectedCrop.name}은(는) 이미 내 농장에 있습니다.'),
@@ -61,6 +62,7 @@ class _ResultScreenState extends State<ResultScreen> {
       addedCount++;
     }
     if (addedCount > 0) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('$addedCount개의 작물이 내 농장에 추가되었습니다!'),
@@ -120,7 +122,7 @@ class _ResultScreenState extends State<ResultScreen> {
                               final query = Uri.encodeComponent(crop.name);
                               final url = 'https://search.shopping.naver.com/ns/search?query=$query';
                               if (await canLaunchUrl(Uri.parse(url))) {
-                                await launchUrl(Uri.parse(url));
+                                await launchUrl(Uri.parse(url),mode: LaunchMode.inAppBrowserView);
                               } 
                               else {
                                   ScaffoldMessenger.of(context).showSnackBar(
