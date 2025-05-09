@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'survey_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // ✅ 추가
+import 'tutorial_screen.dart'; // ✅ 튜토리얼 스크린 불러오기 (아래 예제에 만들어 둘게)
 import 'input_screen.dart';
 import 'result_screen.dart';
-import 'settings_screen.dart';
-import 'myfarm_screen.dart';
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
@@ -22,18 +14,41 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _checkFirstLaunch(); // ✅ 최초 실행 체크
+  }
+
+  Future<void> _checkFirstLaunch() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isFirstLaunch = prefs.getBool('isFirstLaunch');
+
+    if (isFirstLaunch == null || isFirstLaunch) {
+      // ✅ 튜토리얼 띄우기
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const TutorialScreen()),
+        );
+      });
+
+      // ✅ 최초 실행 끝났으니 기록 남기기
+      await prefs.setBool('isFirstLaunch', false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(100),
         child: SafeArea(
-          // ✅ SafeArea로 상단 패딩 확보
           child: AppBar(
             title: const Text(
               '고민 제로 작물 플렛폼, 작물픽!',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            centerTitle: true, // ✅ 중앙 정렬
+            centerTitle: true,
             toolbarHeight: 100,
             shape: const RoundedRectangleBorder(
               side: BorderSide(color: Colors.green, width: 4),
@@ -46,10 +61,10 @@ class _HomePageState extends State<HomePage> {
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.only(right: 5), // ✅ 오른쪽 끝에서 5픽셀 띄우기
+                padding: const EdgeInsets.only(right: 5),
                 child: IconButton(
                   icon: const Icon(Icons.account_circle),
-                  iconSize: 50, // ✅ 아이콘 사이즈
+                  iconSize: 50,
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -63,62 +78,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: _pages[_selectedIndex],
-    );
-  }
-}
-
-class HomeTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image.asset('assets/logo.png', height: 200),
-          const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => SurveyScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(60),
-                    backgroundColor: Colors.white,
-                    foregroundColor: Colors.green,
-                  ),
-                  child: const Text('작물 추천받기'),
-                ),
-              ),
-              const SizedBox(width: 16),
-              SizedBox(
-                width: 150,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => MyFarmScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(60),
-                    backgroundColor: Colors.grey,
-                    foregroundColor: Colors.lightGreenAccent,
-                  ),
-                  child: const Text('내 농장'),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }
