@@ -3,6 +3,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../services/syncdata_service.dart';
 import '../data/task_rules.dart'; // CropData 정의된 곳
+import 'package:url_launcher/url_launcher.dart';
 
 /// 캘린더 이벤트 모델 (직렬화용 JSON)
 class CalendarEvent {
@@ -220,6 +221,22 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            IconButton(
+                            icon : Icon(Icons.shopping_cart),
+                            tooltip: '구매 링크',
+                            onPressed: () async {
+                              final query = Uri.encodeComponent(crop.name);
+                              final url = 'https://search.shopping.naver.com/ns/search?query=$query';
+                              if (await canLaunchUrl(Uri.parse(url))) {
+                                await launchUrl(Uri.parse(url),mode: LaunchMode.inAppBrowserView);
+                              } 
+                              else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('링크를 열 수 없습니다.')),
+                                  );
+                              }
+                            }
+                          ),
                             IconButton(
                               icon: const Icon(Icons.opacity, color: Colors. blue,),
                               tooltip: '물주기 기록',

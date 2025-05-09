@@ -1,39 +1,38 @@
 import 'package:hive/hive.dart';
-import 'package:http/http.dart';
 part 'task_rules.g.dart';
 
-@HiveType(typeId:0)
-class CropData extends HiveObject{
+@HiveType(typeId: 0)
+class CropData extends HiveObject {
   @HiveField(0)
   String name;
 
- @HiveField(1)
- String waterperiod;
+  @HiveField(1)
+  String waterperiod;
 
- @HiveField(2)
- String sunneed;
+  @HiveField(2)
+  String sunneed;
 
- @HiveField(3)
- String description;
+  @HiveField(3)
+  String description;
 
- @HiveField(4)
- String? difficulty;
+  @HiveField(4)
+  String? difficulty;
 
- @HiveField(5)
- String? info;
+  @HiveField(5)
+  String? info;
 
- @HiveField(6)
- String? indoorfriendly;//실내 적합성
+  @HiveField(6)
+  String? indoorfriendly; //실내 적합성
 
- @HiveField(7)
- DateTime? sowingdate;
+  @HiveField(7)
+  DateTime? sowingdate;
 
- @HiveField(8)
- DateTime? harvestdate;
+  @HiveField(8)
+  DateTime? harvestdate;
 
  @HiveField(9)
  DateTime? updatedAt;
- 
+
  CropData({
     required this.name,
     required this.waterperiod,
@@ -43,10 +42,10 @@ class CropData extends HiveObject{
  });
 }
 
-class CropDataBase{
+class CropDataBase {
   static final Box<CropData> box = Hive.box<CropData>('crops');
 
-   static Future<void> addCrop(CropData crop) async {
+  static Future<void> addCrop(CropData crop) async {
     await box.add(crop);
   }
 

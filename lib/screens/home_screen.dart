@@ -14,59 +14,161 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  bool _showTutorial = true; // 튜토리얼 오버레이 표시 여부
 
   final List<Widget> _pages = [
-    HomeTab(),
+    const HomeTab(),
     InputScreen(qaPairs: []),
-    ResultScreen(),
+    const ResultScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('당신만을 위한 작물 플랫폼, 작물픽!'),
-        centerTitle: true,
-        toolbarHeight: 100, // 💡 AppBar 높이 키움
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.account_circle),
-            iconSize: 40, // 💡 프로필 아이콘 키움
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => SettingsScreen()),
-              );
-            },
+      // ✅ AppBar를 둥글게 & 테두리 & 마진 적용 + 위쪽 띄우기
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: Container(
+          margin: const EdgeInsets.fromLTRB(10, 34, 10, 10), // 위쪽 20픽셀 띄우기
+          decoration: BoxDecoration(
+            color: Colors.green, // AppBar 배경색
+            borderRadius: BorderRadius.circular(20), // 둥근 모서리
+            border: Border.all(
+              color: Colors.lightGreenAccent, // 테두리 색상
+              width: 3,
+            ),
           ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center, // ✅ 수직 중앙 정렬
+            children: [
+              const Expanded(
+                child: Center(
+                  child: Text(
+                    '고민 제로 작물 플랫폼, 작물픽!',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 5), // 👉 오른쪽에서 5픽셀 띄우기
+                child: IconButton(
+                  icon: const Icon(Icons.account_circle),
+                  color: Colors.white,
+                  iconSize: 40,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SettingsScreen()),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: Stack(
+        children: [
+          _pages[_selectedIndex],
+
+          // ✅ 튜토리얼 오버레이
+          if (_showTutorial)
+            Container(
+              color: Colors.black.withOpacity(0.6),
+              child: Stack(
+                children: [
+                  // 👇 작물 추천받기 버튼 설명 (위쪽)
+                  Positioned(
+                    bottom: 280, // 버튼 위쪽에 위치
+                    left: MediaQuery.of(context).size.width / 2.3 - 160,
+                    child: Column(
+                      children: const [
+                        Text(
+                          '여기를 눌러서\n작물 추천을 받아보세요!\n👇',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // 👇 내 농장 버튼 설명 (아래쪽)
+                  Positioned(
+                    bottom: 140, // 버튼 아래쪽에 위치
+                    right: MediaQuery.of(context).size.width / 2.2 - 160,
+                    child: Column(
+                      children: const [
+                        Text(
+                          '👆 여기는 내 농장!\n작물을 관리할 수 있어요!',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // 👇 닫기 버튼
+                  Positioned(
+                    top: 50,
+                    right: 20,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _showTutorial = false;
+                        });
+                      },
+                      child: const Text('닫기'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
-      body: _pages[_selectedIndex],
     );
   }
 }
 
 class HomeTab extends StatelessWidget {
+  const HomeTab({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Center(
       // 💡 전체를 화면 중앙에 정렬
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // 💡 세로 중앙 정렬
+        mainAxisAlignment: MainAxisAlignment.center, // 세로 중앙 정렬
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Image.asset('assets/logo.png', height: 150), // 💡 로고 조금 키움
+          Image.asset('assets/logo.png', height: 150), // 로고 조금 키움
           const SizedBox(height: 40),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center, // 💡 버튼도 중앙으로
+            mainAxisAlignment: MainAxisAlignment.center, // 버튼도 중앙으로
             children: [
               SizedBox(
-                width: 150, // 버튼 가로 폭 고정 (적당히 예쁘게)
+                width: 150, // 버튼 가로 폭 고정
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => SurveyScreen()),
+                      MaterialPageRoute(builder: (_) => const SurveyScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -84,7 +186,7 @@ class HomeTab extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => MyFarmScreen()),
+                      MaterialPageRoute(builder: (_) => const MyFarmScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

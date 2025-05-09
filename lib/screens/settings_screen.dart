@@ -16,7 +16,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: ['email', 'https://www.googleapis.com/auth/userinfo.profile'],
   );
+
   User? _user;
+  GoogleSignInAccount? _googleUser; // ✅ 구글 계정 따로 저장
 
   @override
   void initState() {
@@ -26,9 +28,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _restoreSession() async {
     final currentUser = FirebaseAuth.instance.currentUser;
+    final googleUser = await _googleSignIn.signInSilently(); // ✅ 세션 복원
     if (currentUser != null) {
       setState(() {
         _user = currentUser;
+        _googleUser = googleUser;
       });
     }
   }
@@ -54,6 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
       setState(() {
         _user = userCredential.user;
+        _googleUser = googleUser; // ✅ 구글 계정 저장
       });
 
       print('로그인 성공: ${_user?.displayName}');
@@ -66,10 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('Google 로그인'),
-
-      ),
+      appBar: AppBar(title: const Text('Google 로그인')),
       body: Center(
         child:
             _user == null
@@ -85,17 +87,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       backgroundImage:
                           _user?.photoURL != null && _user!.photoURL!.isNotEmpty
                               ? NetworkImage(_user!.photoURL!)
-                              : const AssetImage('assets/default_profile.png')
-                                  as ImageProvider,
+                              : (_googleUser?.photoUrl != null &&
+                                      _googleUser!.photoUrl!.isNotEmpty
+                                  ? NetworkImage(_googleUser!.photoUrl!)
+                                  : const AssetImage(
+                                        'assets/default_profile.png',
+                                      )
+                                      as ImageProvider),
                     ),
                     const SizedBox(height: 20),
                     Text(
-                      _user?.displayName ?? '이름 없음',
+                      _user?.displayName ?? _googleUser?.displayName ?? '이름 없음',
                       style: const TextStyle(fontSize: 20),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      _user?.email ?? '이메일 없음',
+                      _user?.email ?? _googleUser?.email ?? '이메일 없음',
                       style: const TextStyle(color: Colors.grey),
                     ),
                     const SizedBox(height: 30),
@@ -105,6 +112,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         await _googleSignIn.signOut();
                         setState(() {
                           _user = null;
+                          _googleUser = null;
                         });
                         final box = Hive.box<CropData>('crops');
                         await box.clear();
