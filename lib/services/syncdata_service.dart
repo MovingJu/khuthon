@@ -1,59 +1,32 @@
+// lib/services/sync_service.dart
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hive/hive.dart';
 import '../data/task_rules.dart'; // CropData 모델 import
 
 class SyncService {
-  /// Hive → Firestore로 업로드 (로컬 데이터를 클라우드에 저장)
-  static Future<void> uploadHiveToFirestore() async {
+  /// 계정 변경 시: 기존 로컬 데이터 삭제 + 새 계정 Firestore 데이터로 동기화
+  static Future<void> syncOnAccountChange() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception('로그인 필요');
 
     final box = Hive.box<CropData>('crops');
-    final crops = box.values.toList();
 
-    final cropsRef = FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uid)
-        .collection('crops');
+    // 1. 기존 로컬 데이터 모두 삭제
+    print('로컬(Hive) 데이터 삭제 시작');
+    await box.clear();
+    print('로컬(Hive) 데이터 삭제 완료');
 
-    // Firestore의 기존 데이터 삭제 (필요시)
-    final snapshot = await cropsRef.get();
-    for (final doc in snapshot.docs) {
-      await doc.reference.delete();
-    }
-
-    // Hive의 모든 데이터를 Firestore에 업로드 (모든 필드 포함)
-    for (final crop in crops) {
-      await cropsRef.add({
-        'name': crop.name,
-        'waterperiod': crop.waterperiod,
-        'sunneed': crop.sunneed,
-        'description': crop.description,
-        'difficulty': crop.difficulty,
-        'info': crop.info,
-        'indoorfriendly': crop.indoorfriendly,
-        'sowingdate': crop.sowingdate,
-        'harvestdate': crop.harvestdate,
-      });
-    }
-  }
-
-
-  /// Firestore → Hive로 동기화 (클라우드 데이터를 로컬에 저장)
-  static Future<void> downloadFirestoreToHive() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) throw Exception('로그인 필요');
-
+    // 2. Firestore에서 새 계정의 작물 데이터 다운로드
     final cropsRef = FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
         .collection('crops');
     final snapshot = await cropsRef.get();
+    print('Firestore에서 받아온 문서 개수: ${snapshot.docs.length}');
 
-    final box = await Hive.openBox<CropData>('crops');
-    await box.clear(); // 기존 로컬 데이터 삭제
-
+    // 3. Firestore 데이터 Hive에 저장
     for (final doc in snapshot.docs) {
       final data = doc.data();
       await box.add(CropData(
@@ -61,13 +34,21 @@ class SyncService {
         waterperiod: data['waterperiod'] ?? '',
         sunneed: data['sunneed'] ?? '',
         description: data['description'] ?? '',
+        // difficulty: data['difficulty'],
+        // info: data['info'],
+        // indoorfriendly: data['indoorfriendly'],
+        // sowingdate: data['sowingdate'] is Timestamp
+        //     ? (data['sowingdate'] as Timestamp).toDate()
+        //     : data['sowingdate'] is DateTime
+        //     ? data['sowingdate'] as DateTime
+        //     : null,
+        // harvestdate: data['harvestdate'] is Timestamp
+        //     ? (data['harvestdate'] as Timestamp).toDate()
+        //     : data['harvestdate'] is DateTime
+        //     ? data['harvestdate'] as DateTime
+        //     : null,
       ));
     }
-  }
-
-  /// 동기화: 로컬(Hive) → 클라우드(Firestore) → 로컬(Hive) 순서로 갱신
-  static Future<void> sync() async {
-    await uploadHiveToFirestore();
-    await downloadFirestoreToHive();
+    print('새 계정의 Firestore 데이터로 로컬 동기화 완료');
   }
 }

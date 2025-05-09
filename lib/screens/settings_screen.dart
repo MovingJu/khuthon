@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive/hive.dart';
 import '../button/sync_button.dart';
 import '../services/syncdata_service.dart';
+import '../data/task_rules.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -56,6 +58,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       });
 
       print('로그인 성공: ${_user?.displayName}');
+      await SyncService.syncOnAccountChange();
     } catch (e) {
       print('로그인 실패: $e');
     }
@@ -66,27 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
           title: const Text('Google 로그인'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.sync),
-              tooltip: '내 농장 동기화',
-              onPressed: () async {
-                try {
-                  await SyncService.sync();
-                  print('동기화 끝');
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('동기화가 완료되었습니다!')),
-                  );
-                } catch (e) {
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('동기화 실패: $e')),
-                  );
-                }
-              },
-            ),
-          ],
+
       ),
       body: Center(
         child:
@@ -124,6 +107,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         setState(() {
                           _user = null;
                         });
+                        final box = Hive.box<CropData>('crops');
+                        await box.clear();
                       },
                       child: const Text('로그아웃'),
                     ),
