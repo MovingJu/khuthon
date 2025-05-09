@@ -13,7 +13,7 @@ class AuthGate extends StatefulWidget {
 }
 
 class _AuthGateState extends State<AuthGate> {
-  bool? _isLoggedIn; // 세션 기준으로 판단
+  bool? _isLoggedIn;
 
   @override
   void initState() {
@@ -22,25 +22,19 @@ class _AuthGateState extends State<AuthGate> {
   }
 
   void _checkSession() {
-    if (kIsWeb) {
-      final sessionLogin = html.window.sessionStorage['isLoggedIn'];
-      setState(() {
-        _isLoggedIn = sessionLogin == 'true';
-      });
-    } else {
-      // 모바일이면 Firebase Auth만 사용
-      _isLoggedIn = null;
-    }
+    // 모바일에서는 Firebase Auth 상태만 확인
+    final currentUser = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _isLoggedIn = currentUser != null;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     if (_isLoggedIn == true) {
-      // 세션에 로그인 기록이 있으면 바로 홈으로
       return const HomePage();
     }
 
-    // 세션 없으면 Firebase Auth 스트림 확인
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {

@@ -145,10 +145,6 @@ class _MyFarmScreenState extends State<MyFarmScreen> {
                   onPressed: () => _showEventDialog(EventType.water),
                   child: const Text('물주기 기록'),
                 ),
-                ElevatedButton(
-                  onPressed: () => _showEventDialog(EventType.add),
-                  child: const Text('작물 수확 기록'),
-                ),
               ],
             ),
           ),
