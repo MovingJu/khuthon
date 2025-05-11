@@ -10,7 +10,7 @@ import 'screens/settings_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env"); // ✅ 무조건 맨 위에서 실행 (웹/모바일 공통)
+  await dotenv.load(fileName: ".env");
   await Hive.initFlutter();
   Hive.registerAdapter(CropDataAdapter());
   await Hive.openBox<CropData>('crops');

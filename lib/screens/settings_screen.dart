@@ -18,7 +18,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   );
 
   User? _user;
-  GoogleSignInAccount? _googleUser; // ✅ 구글 계정 따로 저장
+  GoogleSignInAccount? _googleUser;
 
   @override
   void initState() {
