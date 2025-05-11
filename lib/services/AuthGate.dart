@@ -20,7 +20,6 @@ class _AuthGateState extends State<AuthGate> {
   }
 
   void _checkSession() {
-    // 모바일에서는 Firebase Auth 상태만 확인
     final currentUser = FirebaseAuth.instance.currentUser;
     setState(() {
       _isLoggedIn = currentUser != null;
